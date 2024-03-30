@@ -9,19 +9,39 @@ do
     Console.Write("Enter command: ");
     input = Console.ReadLine();
 
+    Todo todo = new Todo();
+
     switch (input!.ToLower())
     {
+        case "exit":
+            break;
+        case "add":
+            AddCommand(todo);
+            break;
         case "help":
-            Help help = new Help();
-            help.DisplayMenu();
+            HelpCommand();
             break;
         default:
             Console.WriteLine("Incorrect argument. Pass help if you need assistance.");
             break;
     }
 
-} while (input != "exit");
+} while (input.ToLower() != "exit");
 
 Console.WriteLine("Good Bye!");
 
 Console.Read();
+
+/// <summary>
+/// This functions runs when the user select help as command.
+/// </summary>
+void HelpCommand()
+{
+    Help help = new Help();
+    help.DisplayMenu();
+}
+
+void AddCommand(Todo todo)
+{
+    todo.AddItem();
+}
