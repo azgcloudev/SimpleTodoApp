@@ -1,25 +1,41 @@
 ﻿using SimpleTodoApp;
 
 Console.WriteLine("Todo app, to get the instructions pass the command 'help'");
-string? input = "";
+
+string input;
+
+// Initialize the todo object
+Todo todo = new Todo();
 
 do
 {
     // Ask user to provide a command
     Console.Write("Enter command: ");
-    input = Console.ReadLine();
+    input = Console.ReadLine() ?? "";
 
-    Todo todo = new Todo();
-
-    switch (input!.ToLower())
+    switch (input.ToLower())
     {
         case "exit":
             break;
         case "add":
-            AddCommand(todo);
+            Console.Write("\nEnter the item text: ");
+            string text = Console.ReadLine() ?? "";
+            todo.AddItem(text);
+            break;
+        case "remove":
+            Console.Write("Which index item you want to remove?: ");
+            string idx = Console.ReadLine() ?? "-1";
+            todo.RemoveItem(idx);
+            break;
+        case "list":
+            todo.ListItems();
+            break;
+        case "count":
+            todo.HowManyItems();
             break;
         case "help":
-            HelpCommand();
+            Help help = new Help();
+            help.DisplayMenu();
             break;
         default:
             Console.WriteLine("Incorrect argument. Pass help if you need assistance.");
@@ -30,18 +46,4 @@ do
 
 Console.WriteLine("Good Bye!");
 
-Console.Read();
-
-/// <summary>
-/// This functions runs when the user select help as command.
-/// </summary>
-void HelpCommand()
-{
-    Help help = new Help();
-    help.DisplayMenu();
-}
-
-void AddCommand(Todo todo)
-{
-    todo.AddItem();
-}
+//End of application

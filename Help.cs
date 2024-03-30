@@ -12,6 +12,7 @@ public class Help
     {
         Console.WriteLine("\n******** Commands **********");
         Console.WriteLine("add:     Adds a new list to the todo.");
+        Console.WriteLine("count:   Displays how many items are in the list.");
         Console.WriteLine("list:    Shows all the todo's.");
         Console.WriteLine("remove:  Remove an entry in the list.");
         Console.WriteLine("exit:    Exit from the application.");
